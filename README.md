@@ -1,0 +1,1 @@
+This project uses boto3 python library running in an EC2 instance to read streaming data from OpenWeatherAPI into AWS S3. It is a higly secure and production ready application. It uses remote S3 backend with DynamoDB for terraform state, AWS Secret Manager to store all secrets, VPC Gateway Enpoints to communicate with s3
