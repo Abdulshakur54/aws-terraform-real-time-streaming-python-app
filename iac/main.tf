@@ -1,3 +1,4 @@
+# Generate a random number to be attached to S3 bucket
 resource "random_id" "random_id" {
   keepers = {
     key = "weather report"
@@ -5,6 +6,8 @@ resource "random_id" "random_id" {
   byte_length = 8 # Generate an 8-byte random ID
 }
 
+
+#create s3 bucket to store weather data
 resource "aws_s3_bucket" "weather_bucket" {
   bucket = "weather-bucket-${random_id.random_id.hex}"
   force_destroy = true
@@ -15,6 +18,7 @@ resource "aws_s3_bucket" "weather_bucket" {
 }
 
 
+#creates VPC
 resource "aws_vpc" "weather_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -23,7 +27,7 @@ resource "aws_vpc" "weather_vpc" {
 }
 
 
-
+# Internet gateway to give the VPC access to the internet
 resource "aws_internet_gateway" "weather_igw" {
   vpc_id = aws_vpc.weather_vpc.id
 
@@ -33,6 +37,7 @@ resource "aws_internet_gateway" "weather_igw" {
 }
 
 
+#Create public subnet
 resource "aws_subnet" "weather_subnet" {
   vpc_id                  = aws_vpc.weather_vpc.id
   cidr_block              = "10.0.1.0/24"
@@ -58,6 +63,7 @@ resource "aws_route_table" "weather_route_table" {
 }
 
 
+# Associate the route table with a subnet
 resource "aws_route_table_association" "weather_rta" {
   subnet_id      = aws_subnet.weather_subnet.id
   route_table_id = aws_route_table.weather_route_table.id

@@ -16,5 +16,5 @@ def main():
 if __name__ == '__main__':
     while True: #starting an infinite loop
         main()
-        time.sleep(30) # get weather data every 30 seconds
+        time.sleep(300) # get weather data every 30 seconds
 
