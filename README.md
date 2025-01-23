@@ -1,6 +1,6 @@
 ## AWS Terraform Real Time Streaming Python App
 
-> This project uses boto3 python library running in an EC2 instance to read streaming data from OpenWeatherAPI into AWS S3. It is a higly secure and production ready application. 
+#### This project uses boto3 python library running in an EC2 instance to read streaming data from OpenWeatherAPI into AWS S3. It is a higly secure and production ready application. 
 - It uses remote S3 backend with DynamoDB to store the terraform state file.
   - S3 will make the state files to be encrypted at rest and in transit. 
   - DynamoDB will ensures state locking. 
